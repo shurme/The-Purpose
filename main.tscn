@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cakb137b1246f"]
+
+[ext_resource type="PackedScene" uid="uid://ddbr558gsmh05" path="res://models/sas__cs2_agent_model_blue/scene.gltf" id="1_6w3mp"]
+[ext_resource type="Script" path="res://Player.gd" id="1_hkqvp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_517kj"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0yy3i"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_evr4o"]
+radius = 1.8804
+height = 6.10322
+
+[node name="Main" type="Node"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -1, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_517kj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_0yy3i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.426869, 0.904314, 0, -0.904314, 0.426869, 0, 6.82373, 0)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_hkqvp")
+
+[node name="Pivot" type="Node3D" parent="Player"]
+
+[node name="Character" parent="Player/Pivot" instance=ExtResource("1_6w3mp")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1424, 0)
+shape = SubResource("CapsuleShape3D_evr4o")
+
+[node name="CameraPivot" type="Marker3D" parent="."]
