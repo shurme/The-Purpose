@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu2vrbo7xi4qe"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_c3k3l"]
+[ext_resource type="PackedScene" uid="uid://ddbr558gsmh05" path="res://models/sas__cs2_agent_model_blue/scene.gltf" id="2_c66lg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_evr4o"]
+radius = 1.8804
+height = 6.10322
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_c3k3l")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("2_c66lg")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1424, 0)
+shape = SubResource("CapsuleShape3D_evr4o")
